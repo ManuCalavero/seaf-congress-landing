@@ -1,5 +1,4 @@
 
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -7,558 +6,263 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Menu, X, Users, Brain, Award, Globe, FlaskConical, Calendar, Mail, MapPin, ExternalLink } from "lucide-react";
-import { toast } from "@/hooks/use-toast";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Calendar, MapPin, Users, Award, BookOpen, Clock } from "lucide-react";
 
 const Index = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [formData, setFormData] = useState({
-    nombre: "",
-    email: "",
-    institucion: "",
-    ponente: "",
-    comentarios: "",
-    acepto: false
-  });
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!formData.acepto) {
-      toast({
-        title: "Error",
-        description: "Debes aceptar recibir información del congreso",
-        variant: "destructive"
-      });
-      return;
-    }
-    
-    toast({
-      title: "¡Preinscripción enviada!",
-      description: "Te contactaremos pronto con más información",
-    });
-    
-    setFormData({
-      nombre: "",
-      email: "",
-      institucion: "",
-      ponente: "",
-      comentarios: "",
-      acepto: false
-    });
-  };
-
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-    setIsMenuOpen(false);
-  };
-
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-white">
       {/* Header fijo */}
-      <header className="fixed top-0 w-full bg-white/95 backdrop-blur-sm border-b z-50">
-        <div className="container mx-auto px-4 lg:px-6">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex items-center space-x-4">
-              <div className="w-10 h-10 rounded-lg gradient-bg flex items-center justify-center">
-                <span className="text-white font-bold text-lg">S</span>
-              </div>
-              <div>
-                <h1 className="font-bold text-lg gradient-text">SEAF 2025</h1>
-                <p className="text-xs text-muted-foreground">Valencia, España</p>
-              </div>
+      <header className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm border-b border-gray-200 z-50">
+        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+          <div className="flex items-center space-x-4">
+            <div className="w-12 h-12 bg-gradient-to-br from-purple-600 to-yellow-500 rounded-lg flex items-center justify-center">
+              <span className="text-white font-semibold text-lg">SEAF</span>
             </div>
-            
-            {/* Navegación desktop */}
-            <nav className="hidden lg:flex items-center space-x-8">
-              <button onClick={() => scrollToSection('inicio')} className="text-sm font-medium hover:text-primary transition-colors">Inicio</button>
-              <button onClick={() => scrollToSection('sobre-congreso')} className="text-sm font-medium hover:text-primary transition-colors">Sobre el Congreso</button>
-              <button onClick={() => scrollToSection('ponentes')} className="text-sm font-medium hover:text-primary transition-colors">Ponentes</button>
-              <button onClick={() => scrollToSection('agenda')} className="text-sm font-medium hover:text-primary transition-colors">Agenda</button>
-              <button onClick={() => scrollToSection('inscripcion')} className="text-sm font-medium hover:text-primary transition-colors">Inscripción</button>
-              <button onClick={() => scrollToSection('contacto')} className="text-sm font-medium hover:text-primary transition-colors">Contacto</button>
-            </nav>
-
-            <div className="flex items-center space-x-4">
-              <Button onClick={() => scrollToSection('inscripcion')} className="hidden sm:inline-flex gradient-bg text-white border-0 hover:opacity-90">
-                Preinscripción abierta
-              </Button>
-              
-              {/* Botón menú móvil */}
-              <button
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="lg:hidden p-2"
-              >
-                {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-              </button>
-            </div>
+            <span className="font-semibold text-xl text-gray-900">Congreso SEAF 2025</span>
           </div>
+          
+          <nav className="hidden md:flex items-center space-x-8">
+            <a href="#inicio" className="text-gray-700 hover:text-purple-600 transition-colors">Inicio</a>
+            <a href="#congreso" className="text-gray-700 hover:text-purple-600 transition-colors">Sobre el Congreso</a>
+            <a href="#ponentes" className="text-gray-700 hover:text-purple-600 transition-colors">Ponentes</a>
+            <a href="#agenda" className="text-gray-700 hover:text-purple-600 transition-colors">Agenda</a>
+            <a href="#inscripcion" className="text-gray-700 hover:text-purple-600 transition-colors">Inscripción</a>
+            <a href="#contacto" className="text-gray-700 hover:text-purple-600 transition-colors">Contacto</a>
+          </nav>
+
+          <Button className="gradient-bg text-white font-medium">
+            Preinscripción abierta
+          </Button>
         </div>
-
-        {/* Menú móvil */}
-        {isMenuOpen && (
-          <div className="lg:hidden bg-white border-t">
-            <div className="container mx-auto px-4 py-4">
-              <nav className="flex flex-col space-y-4">
-                <button onClick={() => scrollToSection('inicio')} className="text-left text-sm font-medium hover:text-primary transition-colors">Inicio</button>
-                <button onClick={() => scrollToSection('sobre-congreso')} className="text-left text-sm font-medium hover:text-primary transition-colors">Sobre el Congreso</button>
-                <button onClick={() => scrollToSection('ponentes')} className="text-left text-sm font-medium hover:text-primary transition-colors">Ponentes</button>
-                <button onClick={() => scrollToSection('agenda')} className="text-left text-sm font-medium hover:text-primary transition-colors">Agenda</button>
-                <button onClick={() => scrollToSection('inscripcion')} className="text-left text-sm font-medium hover:text-primary transition-colors">Inscripción</button>
-                <button onClick={() => scrollToSection('contacto')} className="text-left text-sm font-medium hover:text-primary transition-colors">Contacto</button>
-                <Button onClick={() => scrollToSection('inscripcion')} className="gradient-bg text-white border-0 hover:opacity-90 mt-4">
-                  Preinscripción abierta
-                </Button>
-              </nav>
-            </div>
-          </div>
-        )}
       </header>
 
       {/* Hero Section */}
-      <section id="inicio" className="pt-16 min-h-screen flex items-center">
-        <div className="container mx-auto px-4 lg:px-6">
-          <div className="max-w-4xl mx-auto text-center py-20">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-              <span className="gradient-text">Retos de la antropología biológica</span>
-              <br />
-              <span className="text-foreground">ante una sociedad en transformación</span>
-            </h1>
-            
-            <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
-              Un congreso internacional para repensar la antropología en el contexto de los desafíos sociales, 
-              tecnológicos y medioambientales del siglo XXI.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-              <Button 
-                onClick={() => scrollToSection('inscripcion')} 
-                size="lg" 
-                className="gradient-bg text-white border-0 hover:opacity-90 text-lg px-8 py-6"
-              >
-                Haz tu preinscripción
-              </Button>
-              <Button 
-                onClick={() => scrollToSection('agenda')} 
-                variant="outline" 
-                size="lg"
-                className="text-lg px-8 py-6 border-2 border-primary hover:bg-primary/10"
-              >
-                Descubre la agenda preliminar
-              </Button>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
-              <div className="text-center">
-                <div className="w-16 h-16 mx-auto mb-4 rounded-full gradient-bg flex items-center justify-center">
-                  <Calendar className="w-8 h-8 text-white" />
-                </div>
-                <h3 className="font-semibold text-lg mb-2">10–12 Noviembre 2025</h3>
-                <p className="text-muted-foreground">Valencia, España</p>
-              </div>
-              <div className="text-center">
-                <div className="w-16 h-16 mx-auto mb-4 rounded-full gradient-bg flex items-center justify-center">
-                  <Users className="w-8 h-8 text-white" />
-                </div>
-                <h3 className="font-semibold text-lg mb-2">Especialistas Internacionales</h3>
-                <p className="text-muted-foreground">Referentes nacionales e internacionales</p>
-              </div>
-              <div className="text-center">
-                <div className="w-16 h-16 mx-auto mb-4 rounded-full gradient-bg flex items-center justify-center">
-                  <Award className="w-8 h-8 text-white" />
-                </div>
-                <h3 className="font-semibold text-lg mb-2">Certificado Oficial</h3>
-                <p className="text-muted-foreground">Avalado por SEAF</p>
-              </div>
-            </div>
+      <section id="inicio" className="pt-20 pb-16 gradient-bg text-white">
+        <div className="container mx-auto px-4 py-20 text-center">
+          <h1 className="text-5xl md:text-6xl font-semibold mb-6 leading-tight">
+            Retos de la antropología biológica ante una sociedad en transformación
+          </h1>
+          <p className="text-xl md:text-2xl mb-8 max-w-4xl mx-auto leading-relaxed font-light">
+            Un congreso internacional para repensar la antropología en el contexto de los desafíos sociales, tecnológicos y medioambientales del siglo XXI.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button size="lg" className="bg-white text-purple-600 hover:bg-gray-100 font-medium">
+              Haz tu preinscripción
+            </Button>
+            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-purple-600 font-medium">
+              Descubre la agenda preliminar
+            </Button>
           </div>
         </div>
       </section>
 
       {/* Sobre el congreso */}
-      <section id="sobre-congreso" className="py-20 bg-muted/50">
-        <div className="container mx-auto px-4 lg:px-6">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 gradient-text">
-              ¿Por qué este congreso?
-            </h2>
+      <section id="congreso" className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-4xl font-semibold text-gray-900 mb-8">¿Por qué este congreso?</h2>
+            <p className="text-lg text-gray-700 leading-relaxed">
+              Organizado por la Sociedad Española de Antropología Física (SEAF), este congreso busca reunir a especialistas de las ciencias biológicas, sociales y de la salud para debatir los retos que enfrenta la antropología biológica en una sociedad cambiante. El evento ofrece un espacio riguroso y abierto para compartir avances, metodologías y líneas de pensamiento emergentes.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Beneficios */}
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-semibold text-center text-gray-900 mb-12">¿Por qué deberías participar?</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <Card className="card-hover">
+              <CardContent className="p-6 text-center">
+                <Users className="w-12 h-12 text-purple-600 mx-auto mb-4" />
+                <h3 className="text-xl font-medium text-gray-900 mb-2">Networking académico</h3>
+                <p className="text-gray-600">Conecta con referentes nacionales e internacionales</p>
+              </CardContent>
+            </Card>
             
-            <Card className="card-hover border-0 shadow-lg">
-              <CardContent className="p-8 md:p-12">
-                <p className="text-lg md:text-xl leading-relaxed text-center">
-                  Organizado por la <strong>Sociedad Española de Antropología Física (SEAF)</strong>, 
-                  este congreso busca reunir a especialistas de las ciencias biológicas, sociales y de la salud 
-                  para debatir los retos que enfrenta la antropología biológica en una sociedad cambiante. 
-                  El evento ofrece un espacio riguroso y abierto para compartir avances, metodologías y 
-                  líneas de pensamiento emergentes.
-                </p>
+            <Card className="card-hover">
+              <CardContent className="p-6 text-center">
+                <BookOpen className="w-12 h-12 text-purple-600 mx-auto mb-4" />
+                <h3 className="text-xl font-medium text-gray-900 mb-2">Investigaciones de frontera</h3>
+                <p className="text-gray-600">Acceso a las últimas investigaciones en antropología biológica</p>
+              </CardContent>
+            </Card>
+
+            <Card className="card-hover">
+              <CardContent className="p-6 text-center">
+                <Award className="w-12 h-12 text-purple-600 mx-auto mb-4" />
+                <h3 className="text-xl font-medium text-gray-900 mb-2">Certificado oficial</h3>
+                <p className="text-gray-600">Certificado de participación avalado por SEAF</p>
               </CardContent>
             </Card>
           </div>
         </div>
       </section>
 
-      {/* Beneficios de asistir */}
-      <section className="py-20">
-        <div className="container mx-auto px-4 lg:px-6">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 gradient-text">
-            ¿Por qué deberías participar?
-          </h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <Card className="card-hover border-0 shadow-lg">
-              <CardHeader>
-                <div className="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center mb-4">
-                  <Users className="w-6 h-6 text-white" />
-                </div>
-                <CardTitle className="text-xl">Networking académico</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">Conecta con referentes nacionales e internacionales en tu campo de estudio</p>
-              </CardContent>
-            </Card>
-
-            <Card className="card-hover border-0 shadow-lg">
-              <CardHeader>
-                <div className="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center mb-4">
-                  <Brain className="w-6 h-6 text-white" />
-                </div>
-                <CardTitle className="text-xl">Investigaciones de frontera</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">Acceso a las últimas investigaciones en antropología biológica</p>
-              </CardContent>
-            </Card>
-
-            <Card className="card-hover border-0 shadow-lg">
-              <CardHeader>
-                <div className="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center mb-4">
-                  <Award className="w-6 h-6 text-white" />
-                </div>
-                <CardTitle className="text-xl">Certificado oficial</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">Certificado de participación avalado por SEAF</p>
-              </CardContent>
-            </Card>
-
-            <Card className="card-hover border-0 shadow-lg">
-              <CardHeader>
-                <div className="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center mb-4">
-                  <Globe className="w-6 h-6 text-white" />
-                </div>
-                <CardTitle className="text-xl">Enfoque multidisciplinar</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">Biología, salud, tecnología y sociedad en un mismo espacio</p>
-              </CardContent>
-            </Card>
-
-            <Card className="card-hover border-0 shadow-lg md:col-span-2 lg:col-span-2">
-              <CardHeader>
-                <div className="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center mb-4">
-                  <FlaskConical className="w-6 h-6 text-white" />
-                </div>
-                <CardTitle className="text-xl">Talleres prácticos</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">Sesiones temáticas interactivas y talleres prácticos para aplicar conocimientos</p>
-              </CardContent>
-            </Card>
+      {/* Ponentes */}
+      <section id="ponentes" className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-semibold text-center text-gray-900 mb-12">Ponentes principales</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              {
+                name: "Dra. Carmen Díaz",
+                affiliation: "Universidad Autónoma de Madrid",
+                topic: "Antropología forense y derechos humanos en el siglo XXI"
+              },
+              {
+                name: "Dr. Jean-Luc Martin",
+                affiliation: "CNRS – Centre National de la Recherche Scientifique (Francia)",
+                topic: "Evolución humana y diversidad genética contemporánea"
+              },
+              {
+                name: "Dra. Ana Rodríguez",
+                affiliation: "Universidad de Barcelona",
+                topic: "Bioarqueología y sociedades del pasado"
+              },
+              {
+                name: "Dr. Michael Thompson",
+                affiliation: "University of Cambridge (Reino Unido)",
+                topic: "Ética en la investigación antropológica moderna"
+              }
+            ].map((speaker, index) => (
+              <Card key={index} className="card-hover">
+                <CardHeader>
+                  <div className="w-16 h-16 bg-gradient-to-br from-purple-600 to-yellow-500 rounded-full mx-auto mb-4"></div>
+                  <CardTitle className="text-lg font-medium text-center">{speaker.name}</CardTitle>
+                  <CardDescription className="text-center text-sm">{speaker.affiliation}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-gray-600 text-center">{speaker.topic}</p>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Ponentes destacados */}
-      <section id="ponentes" className="py-20 bg-muted/50">
-        <div className="container mx-auto px-4 lg:px-6">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 gradient-text">
-            Ponentes principales
-          </h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
-            <Card className="card-hover border-0 shadow-lg">
-              <CardHeader className="text-center">
-                <div className="w-20 h-20 mx-auto mb-4 rounded-full gradient-bg flex items-center justify-center">
-                  <span className="text-white font-bold text-2xl">CD</span>
-                </div>
-                <CardTitle className="text-lg">Dra. Carmen Díaz</CardTitle>
-                <CardDescription>Universidad Autónoma de Madrid</CardDescription>
-              </CardHeader>
-              <CardContent className="text-center">
-                <p className="text-sm text-muted-foreground">"Antropología forense y derechos humanos en el siglo XXI"</p>
-              </CardContent>
-            </Card>
-
-            <Card className="card-hover border-0 shadow-lg">
-              <CardHeader className="text-center">
-                <div className="w-20 h-20 mx-auto mb-4 rounded-full gradient-bg flex items-center justify-center">
-                  <span className="text-white font-bold text-2xl">JM</span>
-                </div>
-                <CardTitle className="text-lg">Dr. Jean-Luc Martin</CardTitle>
-                <CardDescription>CNRS – Francia</CardDescription>
-              </CardHeader>
-              <CardContent className="text-center">
-                <p className="text-sm text-muted-foreground">"Evolución humana y diversidad genética contemporánea"</p>
-              </CardContent>
-            </Card>
-
-            <Card className="card-hover border-0 shadow-lg">
-              <CardHeader className="text-center">
-                <div className="w-20 h-20 mx-auto mb-4 rounded-full gradient-bg flex items-center justify-center">
-                  <span className="text-white font-bold text-2xl">AR</span>
-                </div>
-                <CardTitle className="text-lg">Dra. Ana Ruiz</CardTitle>
-                <CardDescription>Universidad de Barcelona</CardDescription>
-              </CardHeader>
-              <CardContent className="text-center">
-                <p className="text-sm text-muted-foreground">"Bioarqueología y sociedades del pasado"</p>
-              </CardContent>
-            </Card>
-
-            <Card className="card-hover border-0 shadow-lg">
-              <CardHeader className="text-center">
-                <div className="w-20 h-20 mx-auto mb-4 rounded-full gradient-bg flex items-center justify-center">
-                  <span className="text-white font-bold text-2xl">MS</span>
-                </div>
-                <CardTitle className="text-lg">Prof. Michael Smith</CardTitle>
-                <CardDescription>Oxford University</CardDescription>
-              </CardHeader>
-              <CardContent className="text-center">
-                <p className="text-sm text-muted-foreground">"Tecnología y antropología en el siglo XXI"</p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Agenda preliminar */}
-      <section id="agenda" className="py-20">
-        <div className="container mx-auto px-4 lg:px-6">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 gradient-text">
-            Agenda preliminar
-          </h2>
-          
-          <p className="text-lg text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
+      {/* Agenda */}
+      <section id="agenda" className="py-16">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-semibold text-center text-gray-900 mb-8">Agenda preliminar</h2>
+          <p className="text-lg text-center text-gray-700 mb-12 max-w-3xl mx-auto">
             Las sesiones se organizarán en torno a cinco grandes líneas temáticas:
           </p>
           
           <div className="max-w-4xl mx-auto space-y-6">
-            <Card className="card-hover border-0 shadow-lg">
-              <CardHeader>
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center">
-                    <span className="text-white font-bold">1</span>
-                  </div>
-                  <div>
-                    <CardTitle className="text-xl">Antropología evolutiva y genética</CardTitle>
-                    <CardDescription className="text-base">Perspectivas actuales sobre la evolución humana y diversidad biológica.</CardDescription>
-                  </div>
-                </div>
-              </CardHeader>
-            </Card>
-
-            <Card className="card-hover border-0 shadow-lg">
-              <CardHeader>
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center">
-                    <span className="text-white font-bold">2</span>
-                  </div>
-                  <div>
-                    <CardTitle className="text-xl">Paleopatología y bioarqueología</CardTitle>
-                    <CardDescription className="text-base">Nuevas metodologías en el estudio de restos óseos y condiciones de vida del pasado.</CardDescription>
-                  </div>
-                </div>
-              </CardHeader>
-            </Card>
-
-            <Card className="card-hover border-0 shadow-lg">
-              <CardHeader>
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center">
-                    <span className="text-white font-bold">3</span>
-                  </div>
-                  <div>
-                    <CardTitle className="text-xl">Antropología forense</CardTitle>
-                    <CardDescription className="text-base">Avances en identificación humana y análisis forense.</CardDescription>
-                  </div>
-                </div>
-              </CardHeader>
-            </Card>
-
-            <Card className="card-hover border-0 shadow-lg">
-              <CardHeader>
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center">
-                    <span className="text-white font-bold">4</span>
-                  </div>
-                  <div>
-                    <CardTitle className="text-xl">Salud y cuerpo en contextos contemporáneos</CardTitle>
-                    <CardDescription className="text-base">Intersecciones entre biología, entorno y estilos de vida.</CardDescription>
-                  </div>
-                </div>
-              </CardHeader>
-            </Card>
-
-            <Card className="card-hover border-0 shadow-lg">
-              <CardHeader>
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center">
-                    <span className="text-white font-bold">5</span>
-                  </div>
-                  <div>
-                    <CardTitle className="text-xl">Ética y sociedad en la práctica antropológica</CardTitle>
-                    <CardDescription className="text-base">Debates críticos sobre los usos del conocimiento antropobiológico.</CardDescription>
-                  </div>
-                </div>
-              </CardHeader>
-            </Card>
+            {[
+              {
+                title: "Antropología evolutiva y genética",
+                description: "Perspectivas actuales sobre la evolución humana y diversidad biológica."
+              },
+              {
+                title: "Paleopatología y bioarqueología",
+                description: "Nuevas metodologías en el estudio de restos óseos y condiciones de vida del pasado."
+              },
+              {
+                title: "Antropología forense",
+                description: "Avances en identificación humana y análisis forense."
+              },
+              {
+                title: "Salud y cuerpo en contextos contemporáneos",
+                description: "Intersecciones entre biología, entorno y estilos de vida."
+              },
+              {
+                title: "Ética y sociedad en la práctica antropológica",
+                description: "Debates críticos sobre los usos del conocimiento antropobiológico."
+              }
+            ].map((topic, index) => (
+              <Card key={index} className="border-l-4 border-l-purple-600">
+                <CardContent className="p-6">
+                  <h3 className="text-xl font-medium text-gray-900 mb-2">{topic.title}</h3>
+                  <p className="text-gray-600">{topic.description}</p>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Fechas clave */}
-      <section className="py-20 bg-muted/50">
-        <div className="container mx-auto px-4 lg:px-6">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 gradient-text">
-            Fechas importantes
-          </h2>
-          
-          <div className="max-w-4xl mx-auto">
-            <Card className="border-0 shadow-lg">
-              <CardContent className="p-8">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center">
-                      <Calendar className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-lg">Apertura de inscripciones</h3>
-                      <p className="text-muted-foreground">1 de julio 2025</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center">
-                      <Mail className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-lg">Cierre de recepción de comunicaciones</h3>
-                      <p className="text-muted-foreground">15 de septiembre 2025</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center">
-                      <Award className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-lg">Notificación de aceptación</h3>
-                      <p className="text-muted-foreground">1 de octubre 2025</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center">
-                      <MapPin className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-lg">Congreso</h3>
-                      <p className="text-muted-foreground">10–12 de noviembre 2025, Valencia (España)</p>
-                    </div>
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-semibold text-center text-gray-900 mb-12">Fechas importantes</h2>
+          <div className="max-w-2xl mx-auto">
+            <div className="space-y-6">
+              {[
+                { date: "1 de julio 2025", event: "Apertura de inscripciones" },
+                { date: "15 de septiembre 2025", event: "Cierre de recepción de comunicaciones" },
+                { date: "1 de octubre 2025", event: "Notificación de aceptación" },
+                { date: "10–12 de noviembre 2025", event: "Congreso en Valencia, España" }
+              ].map((item, index) => (
+                <div key={index} className="flex items-center space-x-4 p-4 bg-white rounded-lg shadow-sm">
+                  <Calendar className="w-8 h-8 text-purple-600 flex-shrink-0" />
+                  <div>
+                    <p className="font-medium text-gray-900">{item.date}</p>
+                    <p className="text-gray-600">{item.event}</p>
                   </div>
                 </div>
-              </CardContent>
-            </Card>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* Formulario de preinscripción */}
-      <section id="inscripcion" className="py-20">
-        <div className="container mx-auto px-4 lg:px-6">
+      <section id="inscripcion" className="py-16">
+        <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 gradient-text">
-              ¿Quieres asistir?
-            </h2>
-            
-            <p className="text-lg text-center text-muted-foreground mb-12">
+            <h2 className="text-4xl font-semibold text-center text-gray-900 mb-8">¿Quieres asistir?</h2>
+            <p className="text-lg text-center text-gray-700 mb-12">
               Rellena el siguiente formulario para recibir información detallada sobre el programa, tarifas e inscripción oficial.
             </p>
             
-            <Card className="border-0 shadow-lg">
+            <Card>
               <CardContent className="p-8">
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="space-y-2">
-                    <Label htmlFor="nombre">Nombre completo *</Label>
-                    <Input 
-                      id="nombre"
-                      value={formData.nombre}
-                      onChange={(e) => setFormData({...formData, nombre: e.target.value})}
-                      required
-                      className="h-12"
-                    />
+                <form className="space-y-6">
+                  <div>
+                    <Label htmlFor="name" className="text-base font-medium">Nombre completo</Label>
+                    <Input id="name" className="mt-2" />
                   </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="email">Correo electrónico *</Label>
-                    <Input 
-                      id="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={(e) => setFormData({...formData, email: e.target.value})}
-                      required
-                      className="h-12"
-                    />
+                  
+                  <div>
+                    <Label htmlFor="email" className="text-base font-medium">Correo electrónico</Label>
+                    <Input id="email" type="email" className="mt-2" />
                   </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="institucion">Institución / afiliación</Label>
-                    <Input 
-                      id="institucion"
-                      value={formData.institucion}
-                      onChange={(e) => setFormData({...formData, institucion: e.target.value})}
-                      className="h-12"
-                    />
+                  
+                  <div>
+                    <Label htmlFor="institution" className="text-base font-medium">Institución / afiliación</Label>
+                    <Input id="institution" className="mt-2" />
                   </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="ponente">¿Deseas participar como ponente?</Label>
-                    <Select value={formData.ponente} onValueChange={(value) => setFormData({...formData, ponente: value})}>
-                      <SelectTrigger className="h-12">
+                  
+                  <div>
+                    <Label className="text-base font-medium">¿Deseas participar como ponente?</Label>
+                    <Select>
+                      <SelectTrigger className="mt-2">
                         <SelectValue placeholder="Selecciona una opción" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="si">Sí</SelectItem>
+                        <SelectItem value="yes">Sí</SelectItem>
                         <SelectItem value="no">No</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="comentarios">Comentarios</Label>
-                    <Textarea 
-                      id="comentarios"
-                      value={formData.comentarios}
-                      onChange={(e) => setFormData({...formData, comentarios: e.target.value})}
-                      className="min-h-[100px]"
-                    />
+                  
+                  <div>
+                    <Label htmlFor="comments" className="text-base font-medium">Comentarios</Label>
+                    <Textarea id="comments" className="mt-2" rows={4} />
                   </div>
-
+                  
                   <div className="flex items-center space-x-2">
-                    <Checkbox 
-                      id="acepto"
-                      checked={formData.acepto}
-                      onCheckedChange={(checked) => setFormData({...formData, acepto: checked as boolean})}
-                    />
-                    <Label htmlFor="acepto" className="text-sm">
-                      Acepto recibir información del congreso por email *
+                    <Checkbox id="newsletter" />
+                    <Label htmlFor="newsletter" className="text-sm">
+                      Acepto recibir información del congreso por email
                     </Label>
                   </div>
-
-                  <Button type="submit" className="w-full gradient-bg text-white border-0 hover:opacity-90 h-12 text-lg">
+                  
+                  <Button className="w-full gradient-bg text-white font-medium" size="lg">
                     Enviar preinscripción
                   </Button>
                 </form>
@@ -568,144 +272,93 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Organiza / Patrocina */}
-      <section className="py-20 bg-muted/50">
-        <div className="container mx-auto px-4 lg:px-6">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 gradient-text">
-            Organizado por
-          </h2>
-          
-          <div className="max-w-4xl mx-auto">
-            <Card className="border-0 shadow-lg">
-              <CardContent className="p-8 text-center">
-                <div className="w-24 h-24 mx-auto mb-6 rounded-full gradient-bg flex items-center justify-center">
-                  <span className="text-white font-bold text-3xl">SEAF</span>
-                </div>
-                <h3 className="text-2xl font-bold mb-4">Sociedad Española de Antropología Física</h3>
-                <p className="text-muted-foreground mb-6">
-                  La SEAF es la organización científica de referencia en España para los estudios de antropología física y biológica.
-                </p>
-                <Button variant="outline" className="border-2 border-primary hover:bg-primary/10">
-                  <ExternalLink className="w-4 h-4 mr-2" />
-                  Visitar web oficial
-                </Button>
-              </CardContent>
-            </Card>
+      {/* Organización */}
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-semibold text-center text-gray-900 mb-12">Organizado por</h2>
+          <div className="flex flex-wrap justify-center items-center gap-8">
+            <div className="text-center">
+              <div className="w-24 h-24 bg-gradient-to-br from-purple-600 to-yellow-500 rounded-lg mx-auto mb-4 flex items-center justify-center">
+                <span className="text-white font-semibold text-2xl">SEAF</span>
+              </div>
+              <p className="font-medium text-gray-900">Sociedad Española de</p>
+              <p className="font-medium text-gray-900">Antropología Física</p>
+            </div>
           </div>
         </div>
       </section>
 
       {/* FAQ */}
-      <section className="py-20">
-        <div className="container mx-auto px-4 lg:px-6">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 gradient-text">
-            Preguntas frecuentes
-          </h2>
-          
-          <div className="max-w-4xl mx-auto space-y-6">
-            <Card className="card-hover border-0 shadow-lg">
-              <CardHeader>
-                <CardTitle className="text-lg">¿Puedo enviar comunicaciones si aún soy estudiante?</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">Sí, el congreso está abierto a estudiantes de grado, máster y doctorado. Se valorarán especialmente las contribuciones que aporten perspectivas nuevas al campo.</p>
-              </CardContent>
-            </Card>
-
-            <Card className="card-hover border-0 shadow-lg">
-              <CardHeader>
-                <CardTitle className="text-lg">¿Habrá certificado de asistencia?</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">Sí, todos los participantes recibirán un certificado oficial de asistencia avalado por SEAF, válido para efectos curriculares y de formación continua.</p>
-              </CardContent>
-            </Card>
-
-            <Card className="card-hover border-0 shadow-lg">
-              <CardHeader>
-                <CardTitle className="text-lg">¿El congreso tendrá modalidad online?</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">El congreso será presencial en Valencia, pero se está evaluando la posibilidad de ofrecer algunas sesiones en modalidad híbrida para facilitar la participación internacional.</p>
-              </CardContent>
-            </Card>
-
-            <Card className="card-hover border-0 shadow-lg">
-              <CardHeader>
-                <CardTitle className="text-lg">¿Se puede asistir sin presentar ponencia?</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">Por supuesto. El congreso está abierto tanto a quienes deseen presentar sus investigaciones como a quienes quieran asistir como oyentes para mantenerse actualizados en el campo.</p>
-              </CardContent>
-            </Card>
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-semibold text-center text-gray-900 mb-12">Preguntas frecuentes</h2>
+          <div className="max-w-3xl mx-auto space-y-6">
+            {[
+              {
+                question: "¿Puedo enviar comunicaciones si aún soy estudiante?",
+                answer: "Sí, estudiantes de posgrado y doctorado pueden enviar comunicaciones siguiendo las mismas directrices que los investigadores establecidos."
+              },
+              {
+                question: "¿Habrá certificado de asistencia?",
+                answer: "Sí, todos los participantes recibirán un certificado oficial de participación avalado por SEAF."
+              },
+              {
+                question: "¿El congreso tendrá modalidad online?",
+                answer: "El congreso se realizará de forma presencial en Valencia, España. Se evaluará la posibilidad de transmisión online para algunas sesiones."
+              },
+              {
+                question: "¿Se puede asistir sin presentar ponencia?",
+                answer: "Por supuesto, la asistencia está abierta tanto para quienes presenten comunicaciones como para quienes deseen participar como oyentes."
+              }
+            ].map((faq, index) => (
+              <Card key={index}>
+                <CardContent className="p-6">
+                  <h3 className="text-lg font-medium text-gray-900 mb-2">{faq.question}</h3>
+                  <p className="text-gray-600">{faq.answer}</p>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer id="contacto" className="bg-foreground text-background py-16">
-        <div className="container mx-auto px-4 lg:px-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+      <footer id="contacto" className="bg-gray-900 text-white py-12">
+        <div className="container mx-auto px-4">
+          <div className="grid md:grid-cols-3 gap-8 mb-8">
             <div>
-              <div className="flex items-center space-x-4 mb-6">
-                <div className="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center">
-                  <span className="text-white font-bold text-xl">S</span>
+              <div className="flex items-center space-x-4 mb-4">
+                <div className="w-12 h-12 bg-gradient-to-br from-purple-600 to-yellow-500 rounded-lg flex items-center justify-center">
+                  <span className="text-white font-semibold text-lg">SEAF</span>
                 </div>
-                <div>
-                  <h3 className="font-bold text-xl">SEAF 2025</h3>
-                  <p className="text-sm opacity-70">Valencia, España</p>
-                </div>
+                <span className="font-medium text-xl">Congreso SEAF 2025</span>
               </div>
-              <p className="opacity-70 mb-6">
-                Congreso Internacional de la Sociedad Española de Antropología Física
+              <p className="text-gray-400">
+                Retos de la antropología biológica ante una sociedad en transformación
               </p>
-              <Button 
-                onClick={() => scrollToSection('inscripcion')} 
-                className="gradient-bg text-white border-0 hover:opacity-90"
-              >
+            </div>
+            
+            <div>
+              <h3 className="font-medium text-lg mb-4">Enlaces rápidos</h3>
+              <ul className="space-y-2 text-gray-400">
+                <li><a href="#" className="hover:text-white transition-colors">Aviso legal</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Política de privacidad</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Accesibilidad</a></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h3 className="font-medium text-lg mb-4">Contacto</h3>
+              <p className="text-gray-400 mb-2">congreso@seaf.es</p>
+              <p className="text-gray-400">Valencia, España</p>
+              <Button className="mt-4 gradient-bg text-white font-medium">
                 Preinscríbete ahora
               </Button>
             </div>
-
-            <div>
-              <h4 className="font-semibold text-lg mb-4">Enlaces rápidos</h4>
-              <div className="space-y-2">
-                <button onClick={() => scrollToSection('sobre-congreso')} className="block text-sm opacity-70 hover:opacity-100 transition-opacity">Sobre el Congreso</button>
-                <button onClick={() => scrollToSection('ponentes')} className="block text-sm opacity-70 hover:opacity-100 transition-opacity">Ponentes</button>
-                <button onClick={() => scrollToSection('agenda')} className="block text-sm opacity-70 hover:opacity-100 transition-opacity">Agenda</button>
-                <a href="#" className="block text-sm opacity-70 hover:opacity-100 transition-opacity">Aviso legal</a>
-                <a href="#" className="block text-sm opacity-70 hover:opacity-100 transition-opacity">Política de privacidad</a>
-                <a href="#" className="block text-sm opacity-70 hover:opacity-100 transition-opacity">Accesibilidad</a>
-              </div>
-            </div>
-
-            <div>
-              <h4 className="font-semibold text-lg mb-4">Contacto</h4>
-              <div className="space-y-3">
-                <div className="flex items-center gap-3">
-                  <Mail className="w-5 h-5" />
-                  <span className="text-sm">congreso@seaf.es</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <MapPin className="w-5 h-5" />
-                  <span className="text-sm">Valencia, España</span>
-                </div>
-              </div>
-              <div className="mt-6">
-                <h5 className="font-semibold mb-3">Síguenos</h5>
-                <div className="flex space-x-4">
-                  <a href="#" className="opacity-70 hover:opacity-100 transition-opacity">Twitter</a>
-                  <a href="#" className="opacity-70 hover:opacity-100 transition-opacity">LinkedIn</a>
-                  <a href="#" className="opacity-70 hover:opacity-100 transition-opacity">Facebook</a>
-                </div>
-              </div>
-            </div>
           </div>
-
-          <div className="border-t border-background/20 mt-12 pt-8 text-center">
-            <p className="text-sm opacity-70">
-              © 2025 Sociedad Española de Antropología Física (SEAF). Todos los derechos reservados.
-            </p>
+          
+          <div className="border-t border-gray-800 pt-8 text-center text-gray-400">
+            <p>&copy; 2025 Sociedad Española de Antropología Física (SEAF). Todos los derechos reservados.</p>
           </div>
         </div>
       </footer>
