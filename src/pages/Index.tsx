@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -49,15 +50,18 @@ const Index = () => {
           <h1 className="text-5xl md:text-6xl font-semibold mb-6 leading-tight">
             Retos de la antropología biológica ante una sociedad en transformación
           </h1>
+          <div className="flex items-center justify-center space-x-2 mb-6">
+            <Calendar className="w-6 h-6" />
+            <p className="text-xl md:text-2xl font-medium">
+              10-12 de noviembre 2025 • Valencia, España
+            </p>
+          </div>
           <p className="text-xl md:text-2xl mb-8 max-w-4xl mx-auto leading-relaxed font-light">
             Un congreso internacional para repensar la antropología en el contexto de los desafíos sociales, tecnológicos y medioambientales del siglo XXI.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex justify-center">
             <Button size="lg" className="bg-white text-purple-600 hover:bg-gray-100 font-medium">
               Haz tu preinscripción
-            </Button>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-purple-600 font-medium">
-              Descubre la agenda preliminar
             </Button>
           </div>
         </div>
