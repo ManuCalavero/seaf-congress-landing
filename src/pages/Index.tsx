@@ -31,8 +31,8 @@ const Index = () => {
             <a href="#contacto" className="text-gray-700 hover:text-purple-600 transition-colors">Contacto</a>
           </nav>
 
-          <Button className="gradient-bg text-white font-medium">
-            Preinscripción abierta
+          <Button className="gradient-bg text-white font-medium" asChild>
+            <a href="#inscripcion">Preinscripción abierta</a>
           </Button>
         </div>
       </header>
@@ -60,8 +60,8 @@ const Index = () => {
             Un congreso internacional para repensar la antropología en el contexto de los desafíos sociales, tecnológicos y medioambientales del siglo XXI.
           </p>
           <div className="flex justify-center">
-            <Button size="lg" className="bg-white text-purple-600 hover:bg-gray-100 font-medium">
-              Haz tu preinscripción
+            <Button size="lg" className="bg-white text-purple-600 hover:bg-gray-100 font-medium" asChild>
+              <a href="#inscripcion">Haz tu preinscripción</a>
             </Button>
           </div>
         </div>
@@ -482,8 +482,8 @@ const Index = () => {
               <h3 className="font-medium text-lg mb-4">Contacto</h3>
               <p className="text-gray-400 mb-2">congreso@seaf.es</p>
               <p className="text-gray-400">Valencia, España</p>
-              <Button className="mt-4 gradient-bg text-white font-medium">
-                Preinscríbete ahora
+              <Button className="mt-4 gradient-bg text-white font-medium" asChild>
+                <a href="#inscripcion">Preinscríbete ahora</a>
               </Button>
             </div>
           </div>
