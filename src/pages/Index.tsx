@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -7,6 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Calendar, MapPin, Users, Award, BookOpen, Clock, Play } from "lucide-react";
 
 const Index = () => {
@@ -361,7 +361,7 @@ const Index = () => {
       </section>
 
       {/* Organización */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-semibold text-center text-gray-900 mb-12">Organizado por</h2>
           <div className="flex flex-wrap justify-center items-center gap-8">
@@ -372,6 +372,49 @@ const Index = () => {
               <p className="font-medium text-gray-900">Sociedad Española de</p>
               <p className="font-medium text-gray-900">Antropología Física</p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Sponsors */}
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-semibold text-center text-gray-900 mb-12">Patrocinadores</h2>
+          <div className="max-w-4xl mx-auto">
+            <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              className="w-full"
+            >
+              <CarouselContent className="-ml-2 md:-ml-4">
+                {[
+                  { name: "Universidad Complutense Madrid", logo: "https://images.unsplash.com/photo-1599305445896-76c824ec7abd?w=200&h=100&fit=crop" },
+                  { name: "CSIC", logo: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=200&h=100&fit=crop" },
+                  { name: "Fundación La Caixa", logo: "https://images.unsplash.com/photo-1554469384-e58fac16e23a?w=200&h=100&fit=crop" },
+                  { name: "Ministerio de Ciencia", logo: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=200&h=100&fit=crop" },
+                  { name: "Generalitat Valenciana", logo: "https://images.unsplash.com/photo-1545558014-8692077e9b5c?w=200&h=100&fit=crop" },
+                  { name: "Universidad de Valencia", logo: "https://images.unsplash.com/photo-1564069114553-7215e1ff1890?w=200&h=100&fit=crop" }
+                ].map((sponsor, index) => (
+                  <CarouselItem key={index} className="pl-2 md:pl-4 md:basis-1/3 lg:basis-1/4">
+                    <div className="p-4">
+                      <Card className="border-0 shadow-sm hover:shadow-md transition-shadow">
+                        <CardContent className="flex aspect-[2/1] items-center justify-center p-6">
+                          <img 
+                            src={sponsor.logo} 
+                            alt={sponsor.name}
+                            className="max-w-full max-h-full object-contain grayscale hover:grayscale-0 transition-all duration-300"
+                          />
+                        </CardContent>
+                      </Card>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="hidden md:flex" />
+              <CarouselNext className="hidden md:flex" />
+            </Carousel>
           </div>
         </div>
       </section>
@@ -416,7 +459,7 @@ const Index = () => {
           <div className="grid md:grid-cols-3 gap-8 mb-8">
             <div>
               <div className="flex items-center space-x-4 mb-4">
-                <div className="w-12 h-12 bg-gradient-to-br from-purple-600 to-yellow-500 rounded-lg flex items-center justify-center">
+                <div className="w-12 h-12 bg-gradient-to-br from-purple-600 to-yellow-500 rounded-lg mx-auto mb-4 flex items-center justify-center">
                   <span className="text-white font-semibold text-lg">SEAF</span>
                 </div>
                 <span className="font-medium text-xl">Congreso SEAF 2025</span>
