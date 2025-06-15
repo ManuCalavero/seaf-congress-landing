@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -7,7 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Calendar, MapPin, Users, Award, BookOpen, Clock } from "lucide-react";
+import { Calendar, MapPin, Users, Award, BookOpen, Clock, Play } from "lucide-react";
 
 const Index = () => {
   return (
@@ -38,8 +37,15 @@ const Index = () => {
       </header>
 
       {/* Hero Section */}
-      <section id="inicio" className="pt-20 pb-16 gradient-bg text-white">
-        <div className="container mx-auto px-4 py-20 text-center">
+      <section id="inicio" className="pt-20 pb-16 gradient-bg text-white relative overflow-hidden">
+        <div className="absolute inset-0 opacity-20">
+          <img 
+            src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1920&h=1080&fit=crop" 
+            alt="Conference hall" 
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="container mx-auto px-4 py-20 text-center relative z-10">
           <h1 className="text-5xl md:text-6xl font-semibold mb-6 leading-tight">
             Retos de la antropología biológica ante una sociedad en transformación
           </h1>
@@ -60,17 +66,57 @@ const Index = () => {
       {/* Sobre el congreso */}
       <section id="congreso" className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-4xl font-semibold text-gray-900 mb-8">¿Por qué este congreso?</h2>
+              <p className="text-lg text-gray-700 leading-relaxed mb-6">
+                Organizado por la Sociedad Española de Antropología Física (SEAF), este congreso busca reunir a especialistas de las ciencias biológicas, sociales y de la salud para debatir los retos que enfrenta la antropología biológica en una sociedad cambiante.
+              </p>
+              <p className="text-lg text-gray-700 leading-relaxed">
+                El evento ofrece un espacio riguroso y abierto para compartir avances, metodologías y líneas de pensamiento emergentes.
+              </p>
+            </div>
+            <div className="relative">
+              <img 
+                src="https://images.unsplash.com/photo-1559223607-b4d0555ae227?w=600&h=400&fit=crop" 
+                alt="Conference presentation" 
+                className="rounded-lg shadow-lg w-full h-80 object-cover"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Video Section */}
+      <section className="py-16">
+        <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl font-semibold text-gray-900 mb-8">¿Por qué este congreso?</h2>
-            <p className="text-lg text-gray-700 leading-relaxed">
-              Organizado por la Sociedad Española de Antropología Física (SEAF), este congreso busca reunir a especialistas de las ciencias biológicas, sociales y de la salud para debatir los retos que enfrenta la antropología biológica en una sociedad cambiante. El evento ofrece un espacio riguroso y abierto para compartir avances, metodologías y líneas de pensamiento emergentes.
+            <h2 className="text-4xl font-semibold text-gray-900 mb-8">Conoce más sobre SEAF</h2>
+            <p className="text-lg text-gray-700 mb-12">
+              Descubre la historia y misión de la Sociedad Española de Antropología Física
             </p>
+            
+            <div className="relative bg-gray-900 rounded-lg overflow-hidden shadow-2xl">
+              <div className="aspect-video relative">
+                <img 
+                  src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=800&h=450&fit=crop" 
+                  alt="Conference video preview" 
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
+                  <Button size="lg" className="bg-white/20 hover:bg-white/30 text-white border-2 border-white/50 backdrop-blur-sm">
+                    <Play className="w-6 h-6 mr-2" />
+                    Ver video institucional
+                  </Button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Beneficios */}
-      <section className="py-16">
+      <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-semibold text-center text-gray-900 mb-12">¿Por qué deberías participar?</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -102,9 +148,25 @@ const Index = () => {
       </section>
 
       {/* Ponentes */}
-      <section id="ponentes" className="py-16 bg-gray-50">
+      <section id="ponentes" className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-semibold text-center text-gray-900 mb-12">Ponentes principales</h2>
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-semibold text-gray-900 mb-6">Ponentes principales</h2>
+            <div className="relative h-64 rounded-lg overflow-hidden mb-8">
+              <img 
+                src="https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=1200&h=300&fit=crop" 
+                alt="Conference speakers" 
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-600/80 to-transparent flex items-center">
+                <div className="container mx-auto px-4">
+                  <h3 className="text-2xl font-semibold text-white mb-2">Expertos internacionales</h3>
+                  <p className="text-white/90">Líderes mundiales en antropología biológica</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               {
@@ -144,49 +206,61 @@ const Index = () => {
       </section>
 
       {/* Agenda */}
-      <section id="agenda" className="py-16">
+      <section id="agenda" className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-semibold text-center text-gray-900 mb-8">Agenda preliminar</h2>
-          <p className="text-lg text-center text-gray-700 mb-12 max-w-3xl mx-auto">
-            Las sesiones se organizarán en torno a cinco grandes líneas temáticas:
-          </p>
-          
-          <div className="max-w-4xl mx-auto space-y-6">
-            {[
-              {
-                title: "Antropología evolutiva y genética",
-                description: "Perspectivas actuales sobre la evolución humana y diversidad biológica."
-              },
-              {
-                title: "Paleopatología y bioarqueología",
-                description: "Nuevas metodologías en el estudio de restos óseos y condiciones de vida del pasado."
-              },
-              {
-                title: "Antropología forense",
-                description: "Avances en identificación humana y análisis forense."
-              },
-              {
-                title: "Salud y cuerpo en contextos contemporáneos",
-                description: "Intersecciones entre biología, entorno y estilos de vida."
-              },
-              {
-                title: "Ética y sociedad en la práctica antropológica",
-                description: "Debates críticos sobre los usos del conocimiento antropobiológico."
-              }
-            ].map((topic, index) => (
-              <Card key={index} className="border-l-4 border-l-purple-600">
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-medium text-gray-900 mb-2">{topic.title}</h3>
-                  <p className="text-gray-600">{topic.description}</p>
-                </CardContent>
-              </Card>
-            ))}
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
+            <div>
+              <h2 className="text-4xl font-semibold text-gray-900 mb-8">Agenda preliminar</h2>
+              <p className="text-lg text-gray-700 mb-8">
+                Las sesiones se organizarán en torno a cinco grandes líneas temáticas:
+              </p>
+              
+              <div className="space-y-6">
+                {[
+                  {
+                    title: "Antropología evolutiva y genética",
+                    description: "Perspectivas actuales sobre la evolución humana y diversidad biológica."
+                  },
+                  {
+                    title: "Paleopatología y bioarqueología",
+                    description: "Nuevas metodologías en el estudio de restos óseos y condiciones de vida del pasado."
+                  },
+                  {
+                    title: "Antropología forense",
+                    description: "Avances en identificación humana y análisis forense."
+                  },
+                  {
+                    title: "Salud y cuerpo en contextos contemporáneos",
+                    description: "Intersecciones entre biología, entorno y estilos de vida."
+                  },
+                  {
+                    title: "Ética y sociedad en la práctica antropológica",
+                    description: "Debates críticos sobre los usos del conocimiento antropobiológico."
+                  }
+                ].map((topic, index) => (
+                  <Card key={index} className="border-l-4 border-l-purple-600">
+                    <CardContent className="p-6">
+                      <h3 className="text-xl font-medium text-gray-900 mb-2">{topic.title}</h3>
+                      <p className="text-gray-600">{topic.description}</p>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+            
+            <div className="relative">
+              <img 
+                src="https://images.unsplash.com/photo-1511578314322-379afb476865?w=600&h=800&fit=crop" 
+                alt="Conference agenda" 
+                className="rounded-lg shadow-lg w-full h-full object-cover"
+              />
+            </div>
           </div>
         </div>
       </section>
 
       {/* Fechas clave */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-semibold text-center text-gray-900 mb-12">Fechas importantes</h2>
           <div className="max-w-2xl mx-auto">
@@ -211,63 +285,73 @@ const Index = () => {
       </section>
 
       {/* Formulario de preinscripción */}
-      <section id="inscripcion" className="py-16">
+      <section id="inscripcion" className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <div className="max-w-2xl mx-auto">
-            <h2 className="text-4xl font-semibold text-center text-gray-900 mb-8">¿Quieres asistir?</h2>
-            <p className="text-lg text-center text-gray-700 mb-12">
-              Rellena el siguiente formulario para recibir información detallada sobre el programa, tarifas e inscripción oficial.
-            </p>
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
+            <div>
+              <h2 className="text-4xl font-semibold text-gray-900 mb-8">¿Quieres asistir?</h2>
+              <p className="text-lg text-gray-700 mb-8">
+                Rellena el siguiente formulario para recibir información detallada sobre el programa, tarifas e inscripción oficial.
+              </p>
+              
+              <Card>
+                <CardContent className="p-8">
+                  <form className="space-y-6">
+                    <div>
+                      <Label htmlFor="name" className="text-base font-medium">Nombre completo</Label>
+                      <Input id="name" className="mt-2" />
+                    </div>
+                    
+                    <div>
+                      <Label htmlFor="email" className="text-base font-medium">Correo electrónico</Label>
+                      <Input id="email" type="email" className="mt-2" />
+                    </div>
+                    
+                    <div>
+                      <Label htmlFor="institution" className="text-base font-medium">Institución / afiliación</Label>
+                      <Input id="institution" className="mt-2" />
+                    </div>
+                    
+                    <div>
+                      <Label className="text-base font-medium">¿Deseas participar como ponente?</Label>
+                      <Select>
+                        <SelectTrigger className="mt-2">
+                          <SelectValue placeholder="Selecciona una opción" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="yes">Sí</SelectItem>
+                          <SelectItem value="no">No</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    
+                    <div>
+                      <Label htmlFor="comments" className="text-base font-medium">Comentarios</Label>
+                      <Textarea id="comments" className="mt-2" rows={4} />
+                    </div>
+                    
+                    <div className="flex items-center space-x-2">
+                      <Checkbox id="newsletter" />
+                      <Label htmlFor="newsletter" className="text-sm">
+                        Acepto recibir información del congreso por email
+                      </Label>
+                    </div>
+                    
+                    <Button className="w-full gradient-bg text-white font-medium" size="lg">
+                      Enviar preinscripción
+                    </Button>
+                  </form>
+                </CardContent>
+              </Card>
+            </div>
             
-            <Card>
-              <CardContent className="p-8">
-                <form className="space-y-6">
-                  <div>
-                    <Label htmlFor="name" className="text-base font-medium">Nombre completo</Label>
-                    <Input id="name" className="mt-2" />
-                  </div>
-                  
-                  <div>
-                    <Label htmlFor="email" className="text-base font-medium">Correo electrónico</Label>
-                    <Input id="email" type="email" className="mt-2" />
-                  </div>
-                  
-                  <div>
-                    <Label htmlFor="institution" className="text-base font-medium">Institución / afiliación</Label>
-                    <Input id="institution" className="mt-2" />
-                  </div>
-                  
-                  <div>
-                    <Label className="text-base font-medium">¿Deseas participar como ponente?</Label>
-                    <Select>
-                      <SelectTrigger className="mt-2">
-                        <SelectValue placeholder="Selecciona una opción" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="yes">Sí</SelectItem>
-                        <SelectItem value="no">No</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  
-                  <div>
-                    <Label htmlFor="comments" className="text-base font-medium">Comentarios</Label>
-                    <Textarea id="comments" className="mt-2" rows={4} />
-                  </div>
-                  
-                  <div className="flex items-center space-x-2">
-                    <Checkbox id="newsletter" />
-                    <Label htmlFor="newsletter" className="text-sm">
-                      Acepto recibir información del congreso por email
-                    </Label>
-                  </div>
-                  
-                  <Button className="w-full gradient-bg text-white font-medium" size="lg">
-                    Enviar preinscripción
-                  </Button>
-                </form>
-              </CardContent>
-            </Card>
+            <div className="relative">
+              <img 
+                src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=600&h=800&fit=crop" 
+                alt="Registration" 
+                className="rounded-lg shadow-lg w-full h-full object-cover"
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -289,7 +373,7 @@ const Index = () => {
       </section>
 
       {/* FAQ */}
-      <section className="py-16">
+      <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-semibold text-center text-gray-900 mb-12">Preguntas frecuentes</h2>
           <div className="max-w-3xl mx-auto space-y-6">
