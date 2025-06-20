@@ -23,7 +23,7 @@ const Index = () => {
       <header className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm border-b border-gray-200 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center space-x-4">
-            <div className="w-12 h-12 gradient-bg rounded-lg flex items-center justify-center relative">
+            <div className="w-12 h-12 bg-emerald-500 rounded-lg flex items-center justify-center relative">
               <span className="text-white font-semibold text-lg relative z-10">SEAF</span>
             </div>
             <span className="font-semibold text-xl text-gray-900">Congreso SEAF 2025</span>
@@ -38,14 +38,14 @@ const Index = () => {
             <a href="#contacto" className="text-gray-700 hover:text-emerald-600 transition-colors font-medium">Contacto</a>
           </nav>
 
-          <Button className="gradient-bg text-white font-bold shadow-lg hover:shadow-xl transition-all" asChild>
+          <Button className="btn-emerald text-white font-bold shadow-lg hover:shadow-xl transition-all" asChild>
             <a href="#inscripcion">Preinscripción abierta</a>
           </Button>
         </div>
       </header>
 
       {/* Hero Section */}
-      <section id="inicio" className="pt-20 pb-16 gradient-bg text-white relative overflow-hidden min-h-screen flex items-center">
+      <section id="inicio" className="pt-20 pb-16 hero-bg text-white relative overflow-hidden min-h-screen flex items-center">
         <div className="container mx-auto px-4 py-20 text-center relative z-10">
           <h1 className="text-5xl md:text-7xl font-black mb-8 leading-tight">
             Retos de la antropología biológica ante una 
@@ -76,7 +76,7 @@ const Index = () => {
       <div className="section-divider"></div>
 
       {/* Sobre el congreso */}
-      <section id="congreso" className="py-20 geometric-bg text-white relative">
+      <section id="congreso" className="py-20 section-bg-orange text-white relative">
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
@@ -102,7 +102,7 @@ const Index = () => {
       </section>
 
       {/* Separador */}
-      <div className="section-divider"></div>
+      <div className="section-divider bg-red-500"></div>
 
       {/* Video Section */}
       <section className="py-20 bg-white">
@@ -133,13 +133,13 @@ const Index = () => {
       </section>
 
       {/* Beneficios */}
-      <section className="py-20 geometric-bg text-white">
+      <section className="py-20 section-bg-purple text-white">
         <div className="container mx-auto px-4 relative z-10">
           <h2 className="text-5xl font-black text-center text-white mb-16">¿Por qué deberías participar?</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <Card className="vibrant-card card-hover bg-white/10 backdrop-blur-sm border-0 text-white">
               <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 gradient-bg rounded-full mx-auto mb-6 flex items-center justify-center">
+                <div className="w-16 h-16 bg-emerald-500 rounded-full mx-auto mb-6 flex items-center justify-center">
                   <Users className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-4">Networking académico</h3>
@@ -149,7 +149,7 @@ const Index = () => {
             
             <Card className="vibrant-card card-hover bg-white/10 backdrop-blur-sm border-0 text-white">
               <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 gradient-bg rounded-full mx-auto mb-6 flex items-center justify-center">
+                <div className="w-16 h-16 bg-amber-500 rounded-full mx-auto mb-6 flex items-center justify-center">
                   <BookOpen className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-4">Investigaciones de frontera</h3>
@@ -159,7 +159,7 @@ const Index = () => {
 
             <Card className="vibrant-card card-hover bg-white/10 backdrop-blur-sm border-0 text-white">
               <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 gradient-bg rounded-full mx-auto mb-6 flex items-center justify-center">
+                <div className="w-16 h-16 bg-red-500 rounded-full mx-auto mb-6 flex items-center justify-center">
                   <Award className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-4">Certificado oficial</h3>
@@ -181,7 +181,7 @@ const Index = () => {
                 alt="Conference speakers" 
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-emerald-600/80 to-transparent flex items-center">
+              <div className="absolute inset-0 bg-emerald-600/80 flex items-center">
                 <div className="container mx-auto px-4">
                   <h3 className="text-3xl font-bold text-white mb-2">Expertos internacionales</h3>
                   <p className="text-white/90 text-xl">Líderes mundiales en antropología biológica</p>
@@ -195,27 +195,31 @@ const Index = () => {
               {
                 name: "Dra. Carmen Díaz",
                 affiliation: "Universidad Autónoma de Madrid",
-                topic: "Antropología forense y derechos humanos en el siglo XXI"
+                topic: "Antropología forense y derechos humanos en el siglo XXI",
+                color: "bg-emerald-500"
               },
               {
                 name: "Dr. Jean-Luc Martin",
                 affiliation: "CNRS – Centre National de la Recherche Scientifique (Francia)",
-                topic: "Evolución humana y diversidad genética contemporánea"
+                topic: "Evolución humana y diversidad genética contemporánea",
+                color: "bg-amber-500"
               },
               {
                 name: "Dra. Ana Rodríguez",
                 affiliation: "Universidad de Barcelona",
-                topic: "Bioarqueología y sociedades del pasado"
+                topic: "Bioarqueología y sociedades del pasado",
+                color: "bg-red-500"
               },
               {
                 name: "Dr. Michael Thompson",
                 affiliation: "University of Cambridge (Reino Unido)",
-                topic: "Ética en la investigación antropológica moderna"
+                topic: "Ética en la investigación antropológica moderna",
+                color: "bg-purple-500"
               }
             ].map((speaker, index) => (
               <Card key={index} className="vibrant-card card-hover">
                 <CardHeader>
-                  <div className="w-20 h-20 gradient-bg rounded-full mx-auto mb-4 flex items-center justify-center">
+                  <div className={`w-20 h-20 ${speaker.color} rounded-full mx-auto mb-4 flex items-center justify-center`}>
                     <span className="text-white font-bold text-2xl">{speaker.name.split(' ')[1][0]}</span>
                   </div>
                   <CardTitle className="text-xl font-black text-center">{speaker.name}</CardTitle>
@@ -231,7 +235,7 @@ const Index = () => {
       </section>
 
       {/* Agenda */}
-      <section id="agenda" className="py-20 geometric-bg text-white">
+      <section id="agenda" className="py-20 section-bg-cyan text-white">
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-start">
             <div>
@@ -293,13 +297,13 @@ const Index = () => {
           <div className="max-w-2xl mx-auto">
             <div className="space-y-6">
               {[
-                { date: "1 de julio 2025", event: "Apertura de inscripciones" },
-                { date: "15 de septiembre 2025", event: "Cierre de recepción de comunicaciones" },
-                { date: "1 de octubre 2025", event: "Notificación de aceptación" },
-                { date: "10–12 de noviembre 2025", event: "Congreso en Valencia, España" }
+                { date: "1 de julio 2025", event: "Apertura de inscripciones", color: "bg-emerald-500" },
+                { date: "15 de septiembre 2025", event: "Cierre de recepción de comunicaciones", color: "bg-amber-500" },
+                { date: "1 de octubre 2025", event: "Notificación de aceptación", color: "bg-red-500" },
+                { date: "10–12 de noviembre 2025", event: "Congreso en Valencia, España", color: "bg-purple-500" }
               ].map((item, index) => (
                 <div key={index} className="vibrant-card flex items-center space-x-6 p-6 rounded-xl shadow-lg">
-                  <div className="gradient-bg p-3 rounded-full flex-shrink-0">
+                  <div className={`${item.color} p-3 rounded-full flex-shrink-0`}>
                     <Calendar className="w-8 h-8 text-white" />
                   </div>
                   <div>
@@ -314,7 +318,7 @@ const Index = () => {
       </section>
 
       {/* Formulario de preinscripción */}
-      <section id="inscripcion" className="py-20 geometric-bg text-white">
+      <section id="inscripcion" className="py-20 section-bg-red text-white">
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-start">
             <div>
@@ -393,7 +397,7 @@ const Index = () => {
           <h2 className="text-5xl font-black text-center text-gray-900 mb-16">Organizado por</h2>
           <div className="flex flex-wrap justify-center items-center gap-8">
             <div className="text-center">
-              <div className="w-32 h-32 gradient-bg rounded-2xl mx-auto mb-6 flex items-center justify-center shadow-2xl">
+              <div className="w-32 h-32 bg-emerald-500 rounded-2xl mx-auto mb-6 flex items-center justify-center shadow-2xl">
                 <span className="text-white font-black text-3xl">SEAF</span>
               </div>
               <p className="font-bold text-gray-900 text-xl">Sociedad Española de</p>
@@ -404,7 +408,7 @@ const Index = () => {
       </section>
 
       {/* Sponsors */}
-      <section className="py-20 geometric-bg text-white">
+      <section className="py-20 section-bg-purple text-white">
         <div className="container mx-auto px-4 relative z-10">
           <h2 className="text-5xl font-black text-center text-white mb-16">Patrocinadores</h2>
           <div className="max-w-4xl mx-auto">
@@ -482,12 +486,12 @@ const Index = () => {
 
       {/* Footer */}
       <footer id="contacto" className="bg-gray-900 text-white py-16 relative overflow-hidden">
-        <div className="absolute inset-0 gradient-bg opacity-20"></div>
+        <div className="absolute inset-0 bg-emerald-500 opacity-20"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid md:grid-cols-3 gap-8 mb-8">
             <div>
               <div className="flex items-center space-x-4 mb-6">
-                <div className="w-16 h-16 gradient-bg rounded-xl flex items-center justify-center">
+                <div className="w-16 h-16 bg-emerald-500 rounded-xl flex items-center justify-center">
                   <span className="text-white font-bold text-xl">SEAF</span>
                 </div>
                 <span className="font-bold text-2xl">Congreso SEAF 2025</span>
@@ -510,7 +514,7 @@ const Index = () => {
               <h3 className="font-bold text-xl mb-6">Contacto</h3>
               <p className="text-gray-300 mb-3 font-medium text-lg">congreso@seaf.es</p>
               <p className="text-gray-300 mb-6 font-medium">Valencia, España</p>
-              <Button className="gradient-bg text-white font-bold shadow-lg hover:shadow-xl transition-all transform hover:scale-105" asChild>
+              <Button className="bg-emerald-500 hover:bg-emerald-600 text-white font-bold shadow-lg hover:shadow-xl transition-all transform hover:scale-105" asChild>
                 <a href="#inscripcion">Preinscríbete ahora</a>
               </Button>
             </div>

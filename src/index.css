@@ -73,18 +73,13 @@
 }
 
 @layer components {
-  .gradient-bg {
-    background: linear-gradient(135deg, 
-      #10b981 0%, 
-      #f59e0b 25%, 
-      #ef4444 50%, 
-      #8b5cf6 75%, 
-      #06b6d4 100%);
+  .hero-bg {
+    background-color: #10b981;
     position: relative;
     overflow: hidden;
   }
   
-  .gradient-bg::before {
+  .hero-bg::before {
     content: '';
     position: absolute;
     top: 0;
@@ -93,27 +88,45 @@
     bottom: 0;
     background: 
       radial-gradient(circle at 20% 20%, rgba(239, 68, 68, 0.3) 0%, transparent 50%),
-      radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.3) 0%, transparent 50%),
-      radial-gradient(circle at 40% 60%, rgba(245, 158, 11, 0.3) 0%, transparent 50%);
+      radial-gradient(circle at 80% 80%, rgba(245, 158, 11, 0.3) 0%, transparent 50%),
+      radial-gradient(circle at 40% 60%, rgba(139, 92, 246, 0.3) 0%, transparent 50%);
     pointer-events: none;
   }
   
-  .geometric-bg {
-    background: linear-gradient(135deg, #f59e0b 0%, #ef4444 50%, #10b981 100%);
+  .section-bg-orange {
+    background-color: #f59e0b;
     position: relative;
     overflow: hidden;
   }
   
-  .geometric-bg::before {
+  .section-bg-red {
+    background-color: #ef4444;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .section-bg-purple {
+    background-color: #8b5cf6;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .section-bg-cyan {
+    background-color: #06b6d4;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .section-bg-orange::before,
+  .section-bg-red::before,
+  .section-bg-purple::before,
+  .section-bg-cyan::before {
     content: '';
     position: absolute;
     top: -50%;
     left: -50%;
     width: 200%;
     height: 200%;
-    background: 
-      polygon(0% 0%, 100% 0%, 75% 100%, 25% 100%) #8b5cf6,
-      polygon(25% 0%, 100% 25%, 75% 100%, 0% 75%) #06b6d4;
     opacity: 0.1;
     animation: float 20s ease-in-out infinite;
     pointer-events: none;
@@ -147,25 +160,9 @@
   }
   
   .vibrant-card {
-    background: linear-gradient(135deg, 
-      rgba(16, 185, 129, 0.1) 0%, 
-      rgba(245, 158, 11, 0.1) 50%, 
-      rgba(239, 68, 68, 0.1) 100%);
-    border: 2px solid transparent;
-    background-clip: padding-box;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
     position: relative;
-  }
-  
-  .vibrant-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    padding: 2px;
-    background: linear-gradient(135deg, #10b981, #f59e0b, #ef4444);
-    border-radius: inherit;
-    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    mask-composite: xor;
-    pointer-events: none;
   }
   
   .geometric-shape {
@@ -176,7 +173,7 @@
   
   .geometric-shape.circle {
     border-radius: 50%;
-    background: linear-gradient(45deg, #ef4444, #f59e0b);
+    background-color: #ef4444;
   }
   
   .geometric-shape.triangle {
@@ -189,18 +186,13 @@
   }
   
   .geometric-shape.square {
-    background: linear-gradient(45deg, #8b5cf6, #06b6d4);
+    background-color: #8b5cf6;
     transform: rotate(45deg);
   }
   
   .section-divider {
     height: 100px;
-    background: linear-gradient(135deg, 
-      #10b981 0%, 
-      #f59e0b 25%, 
-      #ef4444 50%, 
-      #8b5cf6 75%, 
-      #06b6d4 100%);
+    background-color: #f59e0b;
     position: relative;
     overflow: hidden;
   }
@@ -226,5 +218,45 @@
   
   @keyframes spin {
     to { transform: rotate(360deg); }
+  }
+  
+  .btn-emerald {
+    background-color: #10b981;
+  }
+  
+  .btn-emerald:hover {
+    background-color: #059669;
+  }
+  
+  .btn-amber {
+    background-color: #f59e0b;
+  }
+  
+  .btn-amber:hover {
+    background-color: #d97706;
+  }
+  
+  .btn-red {
+    background-color: #ef4444;
+  }
+  
+  .btn-red:hover {
+    background-color: #dc2626;
+  }
+  
+  .btn-purple {
+    background-color: #8b5cf6;
+  }
+  
+  .btn-purple:hover {
+    background-color: #7c3aed;
+  }
+  
+  .btn-cyan {
+    background-color: #06b6d4;
+  }
+  
+  .btn-cyan:hover {
+    background-color: #0891b2;
   }
 }
